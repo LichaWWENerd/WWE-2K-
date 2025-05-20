@@ -1,29 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>WWE 2K Roster</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WWE 2K16 Roster</title>
+
+  <style>
+    body {
+      background: linear-gradient(to bottom, #111, #2d0000);
+      color: #eee;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px;
+      background: #000;
+      border-bottom: 4px solid #ff0000;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #ff0000;
+    }
+
+    #searchInput {
+      padding: 10px;
+      font-size: 1rem;
+      width: 50%;
+      max-width: 400px;
+      margin-top: 10px;
+      border: 2px solid crimson;
+      border-radius: 6px;
+    }
+
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 20px;
+      gap: 20px;
+    }
+
+    .roster-card {
+      background: #1b1b1b;
+      border: 2px solid #ff0000;
+      border-radius: 12px;
+      padding: 15px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 0 10px #ff0000aa;
+      transition: transform 0.2s ease;
+    }
+
+    .roster-card:hover {
+      transform: scale(1.05);
+    }
+
+    .roster-card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .roster-card h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: white;
+    }
+
+    .roster-card p {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #000;
+      color: #777;
+      border-top: 1px solid #222;
+    }
+  </style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="roster.html" class="active">Roster</a>
-  </nav>
 
   <header>
     <h1>WWE RAW Roster</h1>
+    <input type="text" id="searchInput" placeholder="Search superstars..." />
   </header>
 
-  <input type="text" id="searchBar" placeholder="Search Superstars...">
-
-  <section id="roster-container"></section>
+  <main id="roster-container"></main>
 
   <footer>
-    <p>© 2025 WWE 2K Universe Mode</p>
+    WWE 2K16 Universe Mode © 2025 | LichaWWENerd Productions
   </footer>
 
-  <script src="roster.js"></script>
+  <script>
+    const roster = [
+      { name: "Alexa Bliss", alignment: "Heel", img: "Bliss.png" },
+      { name: "Bad News Barrett", alignment: "Heel", img: "BadNews.png" },
+      { name: "Batista", alignment: "Heel", img: "Batista.png" },
+      { name: "Big Show", alignment: "Heel", img: "Show.png" },
+      { name: "Bo Dallas", alignment: "Face", img: "Bolieve.png" },
+      { name: "Brie Bella", alignment: "Face", img: "Brie.png" },
+      { name: "Cesaro", alignment: "Heel", img: "Cesaro.png" },
+      { name: "Chris Jericho", alignment: "Face", img: "Jericho.png" },
+      { name: "Curtis Axel", alignment: "Face", img: "Axel.png" },
+      { name: "Dean Ambrose", alignment: "Tweener", img: "Dean.png" },
+      { name: "Dolph Ziggler", alignment: "Face", img: "Ziggler.png" },
+      { name: "Fandango", alignment: "Face", img: "Fandango.png" },
+      { name: "Jack Swagger", alignment: "Face", img: "Swagger.png" },
+      { name: "The Usos", alignment: "Face", img: "TheUsos.png" },
+      { name: "Kalisto", alignment: "Face", img: "Kalisto.png" },
+      { name: "Kane", alignment: "Heel", img: "Kane.png" },
+      { name: "The Ascension", alignment: "Heel", img: "Ascension.png" },
+      { name: "Mark Henry", alignment: "Heel", img: "MarkHenry.png" },
+      { name: "The Miz", alignment: "Heel", img: "TheMiz.png" },
+      { name: "Natalya", alignment: "Face", img: "Natalya.png" },
+      { name: "Neville", alignment: "Face", img: "Neville.png" },
+      { name: "Paige", alignment: "Heel", img: "Paige.png" },
+      { name: "R-Truth", alignment: "Face", img: "Truth.png" },
+      { name: "Randy Orton", alignment: "Face", img: "Orton.png" },
+      { name: "Roman Reigns", alignment: "Tweener", img: "Roman.png" },
+      { name: "Ryback", alignment: "Face", img: "Ryback.png" },
+      { name: "Sasha Banks", alignment: "Heel", img: "Sasha.png" },
+      { name: "Seth Rollins", alignment: "Tweener", img: "SethRollins.png" },
+      { name: "Sheamus", alignment: "Heel", img: "Sheamus.png" },
+      { name: "Sin Cara", alignment: "Face", img: "SinCara.png" },
+      { name: "Steph McMahon", alignment: "Heel", img: "Steph.png" },
+      { name: "Sting", alignment: "Face", img: "Sting.png" },
+      { name: "Summer Rae", alignment: "Heel", img: "Summer.png" },
+      { name: "Tamina", alignment: "Heel", img: "Tamina.png" },
+      { name: "Triple H", alignment: "Heel", img: "HHH.png" },
+      { name: "Zack Ryder", alignment: "Face", img: "Ryder.png" }
+    ];
+
+    function renderRoster(filteredRoster = roster) {
+      const container = document.getElementById("roster-container");
+      container.innerHTML = "";
+      filteredRoster.forEach(({ name, alignment, img }) => {
+        const card = document.createElement("div");
+        card.className = "roster-card";
+        card.innerHTML = `
+          <img src="${img}" alt="${name}" />
+          <h3>${name}</h3>
+          <p>${alignment}</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    document.getElementById("searchInput").addEventListener("input", e => {
+      const value = e.target.value.toLowerCase();
+      const filtered = roster.filter(r =>
+        r.name.toLowerCase().includes(value)
+      );
+      renderRoster(filtered);
+    });
+
+    window.onload = () => renderRoster();
+  </script>
 </body>
 </html>
-
