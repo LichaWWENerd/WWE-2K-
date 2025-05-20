@@ -1,72 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>WWE 2K16 Universe Mode</title>
-<style>
-  body {
-    background: linear-gradient(to bottom, #111, #3b0000);
-    color: #eee;
-    font-family: Arial, sans-serif;
-    margin: 0; padding: 0;
-  }
-  header {
-    text-align: center;
-    padding: 40px 10px 20px;
-    background-color: #000;
-    border-bottom: 4px solid #ff0000;
-  }
-  header h1 {
-    font-size: 3rem;
-    color: #ff0000;
-    margin-bottom: 10px;
-  }
-  header p {
-    font-size: 1.2rem;
-    color: #aaa;
-    font-style: italic;
-  }
-  main {
-    text-align: center;
-    padding: 40px 20px;
-  }
-  a.roster-link {
-    display: inline-block;
-    margin: 20px auto;
-    padding: 15px 30px;
-    font-size: 1.3rem;
-    color: #fff;
-    background: #ff0000;
-    border-radius: 8px;
-    text-decoration: none;
-    box-shadow: 0 0 15px #ff0000aa;
-    transition: background-color 0.3s ease;
-  }
-  a.roster-link:hover {
-    background-color: #cc0000;
-  }
-  footer {
-    text-align: center;
-    padding: 20px;
-    background: #000;
-    color: #777;
-    border-top: 1px solid #222;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WWE 2K16 Universe Mode</title>
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+    }
+    body {
+      background: #0b0b0b;
+      color: #eee;
+      font-family: 'Arial Black', Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header showcase */
+    header {
+      background: url('images/showcase-bg.jpg') center/cover no-repeat;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-shadow: 2px 2px 8px #000;
+      border-bottom: 5px solid #ff0000;
+    }
+    header h1 {
+      font-size: 4rem;
+      color: #ff0000;
+      letter-spacing: 6px;
+      margin-bottom: 15px;
+    }
+    header p {
+      font-size: 1.3rem;
+      font-style: italic;
+      color: #ccc;
+      max-width: 600px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    /* Navigation */
+    nav {
+      background: #140000;
+      border-bottom: 3px solid #ff0000;
+      padding: 15px 0;
+      text-align: center;
+    }
+    nav a {
+      color: #ff0000;
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-decoration: none;
+      margin: 0 18px;
+      padding: 8px 18px;
+      border: 2px solid #ff0000;
+      border-radius: 30px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    nav a:hover {
+      background-color: #ff0000;
+      color: #111;
+    }
+
+    /* Main content placeholder */
+    main {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 50px 20px;
+      font-size: 1.3rem;
+      color: #bbb;
+      font-style: italic;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Footer */
+    footer {
+      background: #111;
+      color: #666;
+      text-align: center;
+      padding: 18px 10px;
+      font-size: 0.9rem;
+      border-top: 1px solid #222;
+    }
+  </style>
 </head>
 <body>
-<header>
-  <h1>WWE 2K16 Universe Mode</h1>
-  <p>The Ultimate WWE Saga: Titles, Champions & History</p>
-</header>
 
-<main>
-  <a class="roster-link" href="roster.html">View WWE RAW Roster</a>
-</main>
+  <header>
+    <h1>WWE 2K16 Universe Mode</h1>
+    <p>The Ultimate Wrestling Experience — Dive Into The Roster, News, & More</p>
+  </header>
 
-<footer>
-  WWE 2K16 Universe Mode © 2025 | Made by a REAL one
-</footer>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="roster.html">Roster</a>
+    <a href="news.html">News</a>
+    <a href="events.html">Events</a>
+    <a href="about.html">About</a>
+  </nav>
+
+  <main>
+    <p>Welcome to WWE 2K16 Universe Mode! Select any link above to explore your favorite superstars, latest news, upcoming events, and all things WWE!</p>
+  </main>
+
+  <footer>
+    &copy; 2025 WWE 2K16 Universe Mode | Created by a REAL one
+  </footer>
+
 </body>
 </html>
+
