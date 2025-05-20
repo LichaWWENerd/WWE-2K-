@@ -1,168 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WWE 2K16 Roster</title>
-  <style>
-    body {
-      background: linear-gradient(to bottom, #111, #3b0000);
-      color: #eee;
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
-    }
-    header {
-      text-align: center;
-      padding: 30px 10px 10px;
-      background-color: #000;
-      border-bottom: 4px solid #ff0000;
-    }
-    header h1 {
-      font-size: 2.8rem;
-      color: #ff0000;
-      margin-bottom: 5px;
-      cursor: pointer;
-    }
-    header p {
-      font-size: 1rem;
-      color: #aaa;
-      font-style: italic;
-      margin-top: 0;
-    }
-    .nav-links {
-      text-align: center;
-      margin: 20px 0;
-    }
-    .nav-links a {
-      color: #ff0000;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 1.2rem;
-      margin: 0 10px;
-      padding: 6px 12px;
-      border: 2px solid #ff0000;
-      border-radius: 6px;
-      transition: background-color 0.3s, color 0.3s;
-      cursor: pointer;
-    }
-    .nav-links a:hover {
-      background-color: #ff0000;
-      color: #000;
-    }
-    .search-container {
-      text-align: center;
-      margin: 20px 0 40px;
-    }
-    #searchInput {
-      width: 250px;
-      padding: 10px 15px;
-      font-size: 1rem;
-      border-radius: 20px;
-      border: 2px solid #ff0000;
-      background: #222;
-      color: #eee;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-    #searchInput:focus {
-      border-color: #ff6666;
-      background: #2a0000;
-    }
-    .champion-section {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 18px;
-      padding: 0 20px 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .champ-card {
-      background: #1b1b1b;
-      border: 2px solid #ff0000;
-      border-radius: 12px;
-      padding: 15px;
-      width: 200px;
-      text-align: center;
-      box-shadow: 0 0 10px #ff0000aa;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.3s ease;
-    }
-    .champ-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #ff0000ee;
-    }
-    .champ-card img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      user-select: none;
-    }
-    .champ-card p {
-      margin: 4px 0;
-      font-weight: bold;
-      user-select: none;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #000;
-      color: #777;
-      border-top: 1px solid #222;
-      margin-top: 50px;
-      font-size: 0.9rem;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>WWE 2K Roster</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <header>
-    <h1>WWE 2K16 Roster</h1>
-    <p>Search and Explore Your WWE RAW Superstars</p>
-  </header>
-
-  <nav class="nav-links">
+  <nav>
     <a href="index.html">Home</a>
-    <a href="roster.html">Roster</a>
+    <a href="roster.html" class="active">Roster</a>
   </nav>
 
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search Superstars..." onkeyup="filterRoster()" />
-  </div>
+  <header>
+    <h1>WWE RAW Roster</h1>
+  </header>
 
-  <section class="champion-section" id="rosterContainer">
-    <!-- Cards inserted here by JS -->
-  </section>
+  <input type="text" id="searchBar" placeholder="Search Superstars...">
+
+  <section id="roster-container"></section>
 
   <footer>
-    WWE 2K16 Universe Mode © 2025 | Made by a REAL one
+    <p>© 2025 WWE 2K Universe Mode</p>
   </footer>
 
-<script>
-  // Your roster data
-  const roster = [
-    { name: "Alexa Bliss", role: "Heel", img: "images/Bliss.png" },
-    { name: "Bad News Barrett", role: "Heel", img: "images/BadNews.png" },
-    { name: "Batista", role: "Heel", img: "images/Batista.png" },
-    { name: "Big Show", role: "Heel", img: "images/Show.png" },
-    { name: "Bo Dallas", role: "Face", img: "images/Bolieve.png" },
-    { name: "Brie Bella", role: "Face", img: "images/Brie.png" },
-    { name: "Cesaro", role: "Heel", img: "images/Cesaro.png" },
-    { name: "Chris Jericho", role: "Face", img: "images/Jericho.png" },
-    { name: "Curtis Axel", role: "Face", img: "images/Axel.png" },
-    { name: "Dean Ambrose", role: "Tweener", img: "images/Dean.png" },
-    { name: "Dolph Ziggler", role: "Face", img: "images/Ziggler.png" },
-    { name: "Fandango", role: "Face", img: "images/Fandango.png" },
-    { name: "Jack Swagger", role: "Face", img: "images/Swagger.png" },
-    { name: "The Usos", role: "Face", img: "images/TheUsos.png" },
-    { name: "Kalisto", role: "Face", img: "images/Kalisto.png" },
-    { name: "Kane", role: "Heel", img: "images/Kane.png" },
-    { name: "The Ascension", role: "Heel", img: "images/Ascension.png" },
-    { name: "Mark Henry", role: "Heel", img: "images/MarkHenry.png" },
-    { name: "The Miz", role: "Heel", img: "images/TheMiz.png" },
-    { name: "Natalya", role: "Face", img: "images/Natalya.png" },
-    { name: "Neville", role: "Face", img: "images/Neville.png" },
-    { name: "Paige", role: "Heel", img: "images/Paige.png" },
-    { name: "R-Truth", role: "Face", img: "images/Truth.png" },
-    { name: "Randy Orton", role: "Face", img: "images/Orton.png" },
-    { name: "Roman Reigns", role: "Twe
+  <script src="roster.js"></script>
+</body>
+</html>
+
